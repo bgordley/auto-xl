@@ -22,6 +22,10 @@ function TestFile([string]$filePath) {
 }
 
 switch ($c.ToUpper()) {
+    'HELP' {
+        Write-Output "Usage:`npowershell -command `"& './AutoXL.ps1' INIT './path/to/settings.json'`"`npowershell -command `"& './AutoXL.ps1' RUN './path/to/settings.json'`""
+    }
+
     'INIT' {
         $excel = @{
             path = 'C:\example\example.xlsm';
