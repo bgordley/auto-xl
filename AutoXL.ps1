@@ -3,9 +3,6 @@ param(
     [string]$p  # Path of json file
 )
 
-. "U:\Software Engineering Team\Reporting\Scripts\Tools\EnvVars.ps1"
-. "U:\Software Engineering Team\Reporting\Scripts\Tools\GUITools.ps1"
-
 function TestFile([string]$filePath) {
     # Test the given file's integrity then return test result
     $isValid = $false
