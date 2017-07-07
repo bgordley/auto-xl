@@ -77,10 +77,12 @@ switch ($c.ToUpper()) {
             try{ if($_.macro.Trim() -ne "") { $excel.Run($_.macro); Write-Debug "Macro $($_.macro) has run successfully" }}
             catch{ Write-Debug "Failed to run macro $($_.macro)"; exit }
 
-            # Save the report to the provided output location
-            $outFile = [System.IO.Path]::combine($_.output, [System.IO.Path]::GetFileNameWithoutExtension($_.path) + $currDate + ".xlsx")
-            try{ $workbook.SaveAs($outFile, $xlFixedFormat); Write-Debug "Successfully saved as $outFile" }
-            catch{ Write-Debug "Failed to save as $outFile"; exit }
+            # Save the report to the provided output location if output is provided
+            if($_.output -ne $null -and $_.output -ne "") {
+                $outFile = [System.IO.Path]::combine($_.output, [System.IO.Path]::GetFileNameWithoutExtension($_.path) + $currDate + ".xlsx")
+                try{ $workbook.SaveAs($outFile, $xlFixedFormat); Write-Debug "Successfully saved as $outFile" }
+                catch{ Write-Debug "Failed to save as $outFile"; exit }
+            }
 
             $excel.Quit()
         }
